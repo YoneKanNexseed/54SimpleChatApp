@@ -60,7 +60,7 @@
                     <connections>
                         <outlet property="roomNameTextField" destination="53G-hc-T1R" id="pU1-hU-tqS"/>
                         <outlet property="tableView" destination="YcJ-0S-zGI" id="LQc-Nl-3X1"/>
-                        <segue destination="QKw-Tw-Dhx" kind="show" id="3Mo-zu-iPX"/>
+                        <segue destination="QKw-Tw-Dhx" kind="show" identifier="toRoom" id="3Mo-zu-iPX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

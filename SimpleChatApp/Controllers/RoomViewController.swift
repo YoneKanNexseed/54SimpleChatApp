@@ -14,6 +14,9 @@ class RoomViewController: UIViewController {
     
     @IBOutlet weak var messageTextField: UITextField!
     
+    // どの部屋か特定するためのドキュメントIDを受け取る変数
+    var documentId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

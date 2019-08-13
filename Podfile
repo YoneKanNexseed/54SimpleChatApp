@@ -7,5 +7,5 @@ target 'SimpleChatApp' do
 
   # Pods for SimpleChatApp
   pod 'Firebase/Analytics'
-
+  pod 'Firebase/Firestore'
 end
