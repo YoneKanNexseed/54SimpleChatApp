@@ -115,8 +115,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let room = rooms[indexPath.row]
+        
+        // 選択を解除（グレーの色を元に戻す）
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // 次の画面へ遷移
         performSegue(withIdentifier: "toRoom", sender: room.documentId)
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toRoom" {
+            
+            let roomVC = segue.destination as! RoomViewController
+            roomVC.documentId = sender as! String
+            
+        }
+        
+    }
 }
