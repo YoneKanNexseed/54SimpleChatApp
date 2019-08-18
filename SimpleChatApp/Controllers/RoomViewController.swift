@@ -34,6 +34,37 @@ class RoomViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Firestoreに接続
+        let db = Firestore.firestore()
+        
+        // 選ばれた部屋の中のメッセージを監視する
+        db.collection("room").document(documentId).collection("message")
+            .order(by: "text", descending: true)
+            .addSnapshotListener { (querySnapshot, error) in
+                
+                // querySnapshotがもっているドキュメントを取得
+                guard let documents = querySnapshot?.documents else {
+                    // 取得したドキュメントが空の場合処理を中断
+                    return
+                }
+                
+                // 取得したドキュメントを元に、画面を更新
+                var messages: [Message] = []
+                
+                for document in documents {
+                    let documentId = document.documentID
+                    let text = document.get("text") as! String
+                    
+                    let message = Message(documentId: documentId, text: text)
+                    messages.append(message)
+                }
+                
+                self.messages = messages
+                
+        }
+    }
+    
     // 送信ボタンがクリックされた時の処理
     @IBAction func didClickButton(_ sender: UIButton) {
         // 文字が空かどうかチェック
